@@ -164,17 +164,20 @@ public class QueryProcessor {
         return "";
     }
 
-    
-    private boolean checkIfNumberIsCube(int number) {
-        return Math.cbrt(number) % 1 == 0;
-    }
-
     private BigInteger computePower(BigInteger base, int exponent) {
         return base.pow(exponent);
     }
 
+    private boolean checkIfNumberIsCube(int number) {
+      int t1 = number;
+      double t2 = Math.cbrt(number);
+      return  t1 == (t2 * t2 * t2);
+    }
+  
     private boolean checkIfNumberIsSquare(int number) {
-        return Math.sqrt(number) % 1 == 0;
+        int t1 = number;
+        double t2 = Math.sqrt(number);
+        return  t1 == (t2 * t2);
     }
 
     private boolean isPrime(int num) {
