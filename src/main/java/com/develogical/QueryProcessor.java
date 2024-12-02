@@ -32,6 +32,22 @@ public class QueryProcessor {
             }
         }
 
+        if (query.contains("What is") && query.contains("plus")) {
+            // What is 62 plus 40?
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(query);
+            List<Integer> numbers = new ArrayList<>();
+            
+            while (matcher.find()) {
+                numbers.add(Integer.parseInt(matcher.group()));
+            }
+            
+            if (numbers.size() >= 2) {
+                return String.valueOf(numbers.get(0) + numbers.get(1));
+            }
+            return "";
+        }
+
         return "";
     }
 
