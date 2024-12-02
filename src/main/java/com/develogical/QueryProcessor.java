@@ -84,7 +84,11 @@ public class QueryProcessor {
             }
     
             if (!validNumbers.isEmpty()) {
-                return validNumbers.stream().map(String::valueOf).collect(Collectors.joining(","));
+                if (validNumbers.size() == 1) {
+                    return String.valueOf(validNumbers.get(0));
+                } else {
+                    return validNumbers.stream().map(String::valueOf).collect(Collectors.joining(","));
+                }
             }
         }
 
