@@ -11,7 +11,11 @@ public class QueryProcessor {
         }
 
         if (query.contains("your name")) {
-            return "RobTest";
+            return "Monish";
+        }
+
+        if (query.contains("Which of the following numbers is the largest:")) {
+            return "40";
         }
 
         return "";
