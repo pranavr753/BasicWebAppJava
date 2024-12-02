@@ -107,6 +107,39 @@ public class QueryProcessor {
             }
         }
 
+        if (query.contains("are primes:")) {
+            // Example query:
+            // Which of the following numbers are primes: 21, 44, 2, 47, 65?
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(query);
+            List<Integer> numbers = new ArrayList<>();
+        
+            while (matcher.find()) {
+                numbers.add(Integer.parseInt(matcher.group()));
+            }
+        
+            List<Integer> primeNumbers = new ArrayList<>();
+            for (Integer num : numbers) {
+                if (isPrime(num)) {
+                    primeNumbers.add(num);
+                }
+            }
+        
+            if (!primeNumbers.isEmpty()) {
+                // Convert the list of prime numbers to a comma-separated string
+                StringBuilder result = new StringBuilder("Prime numbers: ");
+                for (int i = 0; i < primeNumbers.size(); i++) {
+                    result.append(primeNumbers.get(i));
+                    if (i < primeNumbers.size() - 1) {
+                        result.append(", ");
+                    }
+                }
+                return result.toString();
+            }
+        
+            return "No prime numbers found in the list.";
+        }
+
         return "";
     }
 
