@@ -140,12 +140,36 @@ public class QueryProcessor {
             return "No prime numbers found in the list.";
         }
 
+        if (query.contains("What is") && query.contains("to the power of")) {
+            // Example query:
+            // What is 8 to the power of 66?
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(query);
+            List<BigInteger> numbers = new ArrayList<>();
+        
+            while (matcher.find()) {
+                numbers.add(new BigInteger(matcher.group()));
+            }
+        
+            if (numbers.size() >= 2) {
+                BigInteger base = numbers.get(0);
+                int exponent = numbers.get(1).intValue();
+                BigInteger result = computePower(base, exponent);
+                return result.toString();
+            }
+            return "";
+        }
+
         return "";
     }
 
     
     private boolean checkIfNumberIsCube(int number) {
         return Math.cbrt(number) % 1 == 0;
+    }
+
+    private BigInteger computePower(BigInteger base, int exponent) {
+        return base.pow(exponent);
     }
 
     private boolean checkIfNumberIsSquare(int number) {
