@@ -1,5 +1,8 @@
 package com.develogical;
 
+import java.util.regex.*;
+import java.util.*;
+
 public class QueryProcessor {
 
     public String process(String query) {
@@ -15,7 +18,18 @@ public class QueryProcessor {
         }
 
         if (query.contains("Which of the following numbers is the largest:")) {
-            return "40";
+            Pattern pattern = Pattern.compile("\\d+");
+            Matcher matcher = pattern.matcher(query);
+            List<Integer> numbers = new ArrayList<>();
+
+            while (matcher.find()) {
+                numbers.add(Integer.parseInt(matcher.group()));
+            }
+
+            if (!numbers.isEmpty()) {
+                int largest = Collections.max(numbers);
+                return String.valueOf(largest);
+            }
         }
 
         return "";
