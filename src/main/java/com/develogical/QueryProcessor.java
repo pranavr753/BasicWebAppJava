@@ -108,9 +108,9 @@ public class QueryProcessor {
             }
         }
 
-        if (query.contains("are primes:")) {
+        if (query.toLowerCase().contains("are primes:")) {
             // Example query:
-            // Which of the following numbers are primes: 21, 44, 2, 47, 65?
+            // Which of the following numbers are primes: 40, 36, 95, 71, 29?
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(query);
             List<Integer> numbers = new ArrayList<>();
