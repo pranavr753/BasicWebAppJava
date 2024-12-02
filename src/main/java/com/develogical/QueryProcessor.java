@@ -38,19 +38,19 @@ public class QueryProcessor {
         }
 
         if (query.contains("What is") && query.contains("plus")) {
-            // What is 62 plus 40?
+            // What is 24 plus 15 plus 2?
             Pattern pattern = Pattern.compile("\\d+");
             Matcher matcher = pattern.matcher(query);
             List<Integer> numbers = new ArrayList<>();
-            
             while (matcher.find()) {
                 numbers.add(Integer.parseInt(matcher.group()));
             }
-            
-            if (numbers.size() >= 2) {
-                return String.valueOf(numbers.get(0) + numbers.get(1));
+
+            int sum = 0;
+            for (int number : numbers) {
+                sum += number;
             }
-            return "";
+            return String.valueOf(sum);
         }
 
         if (query.contains("What is") && query.contains("minus")) {
