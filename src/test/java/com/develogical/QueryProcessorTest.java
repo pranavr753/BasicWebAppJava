@@ -24,4 +24,10 @@ public class QueryProcessorTest {
     public void knowsTeamName() throws Exception {
         assertThat(queryProcessor.process("What is your name?"), containsString("RobTest"));
     }
+
+    @Test
+    public void test1() throws Exception {
+        String test = queryProcessor.process("Which of the following numbers is both a square and a cube: 2416, 1936, 3160, 4508, 4290, 2744, 1?");
+        assertThat(test, is("1936"));
+    }
 }
